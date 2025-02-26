@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+"use client";
+import { useState } from "react";
 import { json, text } from "stream/consumers";
 
 const AddTask = () => {
@@ -36,20 +37,30 @@ const AddTask = () => {
 
   return (
     <>
-      <input
-        type="text"
-        className="p-4 w-full sm:w-3/4 md:w-2/3 lg:w-1/2 rounded bg-slate-600 text-zinc-200 border-x-black shadow-md hover "
-        placeholder="What's Your New Task...?"
-      />
-      <input
-        type="text"
-        className="p-16 w-full sm:w-3/4 md:w-2/3 lg:w-1/2 rounded bg-slate-600 text-zinc-200 border-x-black shadow-md hover mt-4 "
-        placeholder="Write Something About Task"
-      />
+      <form onSubmit={submitHandle}>
+        <input
+          type="text"
+          className="p-4 w-full sm:w-3/4 md:w-2/3 lg:w-1/2 rounded bg-slate-600 text-zinc-200 border-x-black shadow-md hover "
+          placeholder="What's Your New Task...?"
+          value={task}
+          onChange={(e) => setTask(e.target.value)}
+          required
+        />
+        <input
+          type="text"
+          className="p-20 w-full sm:w-3/4 md:w-2/3 lg:w-1/2  rounded bg-slate-600 text-zinc-200 border-x-black shadow-md hover mt-4 ml-1"
+          placeholder="Write Something About Task"
+          value={description}
+          onChange={(e) => setDesc(e.target.value)}
+        />
 
-      <button className="p-2 rounded mt-4 w-full sm:w-auto bg-red-600  text-white hover:drop-shadow-lg ">
-        Add new task
-      </button>
+        <button
+          type="submit"
+          className="p-2 rounded m-10 w-full sm:w-auto bg-red-600  text-white hover:drop-shadow-lg "
+        >
+          Add new task
+        </button>
+      </form>
     </>
   );
 };
