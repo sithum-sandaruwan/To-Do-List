@@ -1,15 +1,16 @@
 package com.sithum.todoapp.personal_to_do.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import java.sql.Date;
+import org.springframework.data.annotation.Id;
 
-@Getter
-@Setter
-@AllArgsConstructor
-@NoArgsConstructor
+@Document(collection = "tasks")
 public class Task {
-    private String task;
+
+    @Id
+    private String id;
+    private String title;
     private String desc;
+    private boolean completed;
+    private Date createDate;
+
 }

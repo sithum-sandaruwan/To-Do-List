@@ -28,7 +28,6 @@ const AddTask = () => {
         setTask("");
         setDesc("");
       }
-      alert("Failed to add");
     } catch (error) {
       console.error("ERROR", error);
       alert("Error occured");
