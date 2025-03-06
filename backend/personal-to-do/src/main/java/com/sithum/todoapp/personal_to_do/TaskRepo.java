@@ -7,4 +7,8 @@ import com.sithum.todoapp.personal_to_do.model.Task;
 public interface TaskRepo extends MongoRepository<Task, String> {
 
     List<Task> findByCompleted(boolean completed);
+
+    List<Task> findAll();
+
+    Task save(Task task);
 }

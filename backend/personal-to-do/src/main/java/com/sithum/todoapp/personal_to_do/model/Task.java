@@ -13,4 +13,9 @@ public class Task {
     private boolean completed;
     private Date createDate;
 
+    public void setCreatedAt(java.util.Date date) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'setCreatedAt'");
+    }
+
 }
