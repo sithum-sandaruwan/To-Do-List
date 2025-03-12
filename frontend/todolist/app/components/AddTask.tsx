@@ -10,10 +10,15 @@ const AddTask = () => {
   const submitHandle = async (e: React.FormEvent) => {
     e.preventDefault();
 
+    if (!endDate) {
+      alert("Please give end date");
+      return;
+    }
+
     const newTask = {
       task,
       description,
-      endDate: new Date(endDate).toISOString,
+      endDate: new Date(endDate).toISOString(),
     };
 
     try {
@@ -56,11 +61,12 @@ const AddTask = () => {
           onChange={(e) => setDescription(e.target.value)}
         />
         <input
-          type="text"
+          type="datetime-local"
           className="p-20 w-full sm:w-3/4 md:w-2/3 lg:w-1/2  rounded bg-slate-600 text-zinc-200 border-x-black shadow-md hover mt-4 ml-1"
-          placeholder="Write Something About Task"
-          value={description}
+          placeholder="What will be the end date of the task..?"
+          value={endDate}
           onChange={(e) => setEndDate(e.target.value)}
+          required
         />
 
         <button

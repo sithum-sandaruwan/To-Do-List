@@ -21,8 +21,10 @@ public class TaskService {
     }
 
     public Task createTask(Task task) {
-
+        System.out.println("recieved task:" + task);
         task.setStartDate(new Date());
+        System.out.println("end Date:" + task.getEndDate());
+
         return taskRepository.save(task);
     }
 
