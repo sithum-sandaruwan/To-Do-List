@@ -21,7 +21,8 @@ public class TaskService {
     }
 
     public Task createTask(Task task) {
-        task.setCreatedAt(new Date());
+
+        task.setStartDate(new Date());
         return taskRepository.save(task);
     }
 

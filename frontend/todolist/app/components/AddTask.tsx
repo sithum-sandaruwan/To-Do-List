@@ -4,7 +4,8 @@ import { json, text } from "stream/consumers";
 
 const AddTask = () => {
   const [task, setTask] = useState("");
-  const [description, setDesc] = useState("");
+  const [description, setDescription] = useState("");
+  const [endDate, setEndDate] = useState("");
 
   const submitHandle = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -12,6 +13,7 @@ const AddTask = () => {
     const newTask = {
       task,
       description,
+      endDate: new Date(endDate).toISOString,
     };
 
     try {
@@ -26,7 +28,8 @@ const AddTask = () => {
       if (res.ok) {
         alert("Task Added Successfully");
         setTask("");
-        setDesc("");
+        setDescription("");
+        setEndDate("");
       }
     } catch (error) {
       console.error("ERROR", error);
@@ -50,7 +53,14 @@ const AddTask = () => {
           className="p-20 w-full sm:w-3/4 md:w-2/3 lg:w-1/2  rounded bg-slate-600 text-zinc-200 border-x-black shadow-md hover mt-4 ml-1"
           placeholder="Write Something About Task"
           value={description}
-          onChange={(e) => setDesc(e.target.value)}
+          onChange={(e) => setDescription(e.target.value)}
+        />
+        <input
+          type="text"
+          className="p-20 w-full sm:w-3/4 md:w-2/3 lg:w-1/2  rounded bg-slate-600 text-zinc-200 border-x-black shadow-md hover mt-4 ml-1"
+          placeholder="Write Something About Task"
+          value={description}
+          onChange={(e) => setEndDate(e.target.value)}
         />
 
         <button
