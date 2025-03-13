@@ -1,4 +1,26 @@
+import { useEffect, useState } from "react";
+
 const TaskList = () => {
+  const [tasks, setTasks] = useState([]);
+
+  useEffect(() => {
+    const fetchTasks = async () => {
+      try {
+        const res = await fetch("http://localhost:8080/api/tasks");
+
+        if (res.ok) {
+          const data = await res.json();
+          setTasks(data);
+        } else {
+          console.log("Failed to fetch");
+        }
+      } catch (error) {
+        console.log("Error fetching tasks:", error);
+      }
+    };
+    fetchTasks();
+  });
+
   return (
     <>
       <div className=" bg-white drop-shadow-lg rounded-md   p-11  m-6 hover:">
