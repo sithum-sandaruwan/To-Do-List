@@ -1,87 +1,35 @@
-# 📌 Next + Spring Boot + PostgreSQL Application
+# 📌To-Do List Application
 
-## 🧐 Getting Started
-This is the guide for setup and run this application.
+A simple and efficient To-Do List application built with **Next.js** (frontend), **Java Spring Boot** (backend), and **MongoDB** (database). This application allows users to create, view, and manage tasks with ease.
 
----
+## ⚙ Features
+- **Add Tasks**: Create new tasks with a title, description, and end date.
+- **View Tasks**: Display a list of all tasks in a clean and organized manner.
+- **Mark as Done**: Mark tasks as completed.
+- **Responsive Design**: Works seamlessly on both desktop and mobile devices.
 
-## ❗❗ Prerequisites 
+## 🧐Technologies Used
+- **Frontend**: Next.js, Tailwind CSS
+- **Backend**: Java Spring Boot
+- **Database**: MongoDB
+- **API Communication**: RESTful APIs
 
-Ensure you have the following installed on your system:
-- **Java 17+** (JDK)
-- **Maven** (For dependency management)
-- **PostgreSQL**(Database)
-- **pgAdmin** (Optional GUI for PostgreSQL)
-- **Git** (For version control)
----
-## 💻⚙ Installation & Setup
+## 😎Screenshots
 
-### 1️⃣ Clone the Repository
-```sh
- git clone https://github.com/your-repo-name.git
- cd your-repo-name
-```
+![Add Task Page](screenshots/add-task.png)
+![Task List Page](screenshots/task-list.png)
 
-### 2️⃣ Configure PostgreSQL Database
-1. **Create a new database:**
-   ```sql
-   CREATE DATABASE demo;
-   ```
-2. **Create a new user & grant privileges:**
-   ```sql
-   CREATE USER user WITH PASSWORD 'new_secure_password';
-   ALTER ROLE user SET client_encoding TO 'utf8';
-   ALTER ROLE user SET default_transaction_isolation TO 'read committed';
-   ALTER ROLE user SET timezone TO 'UTC';
-   GRANT ALL PRIVILEGES ON DATABASE demo TO user;
-   ```
+## Getting Started
 
-### 3️⃣ Update `application.properties` (or `application.yml`)
-Modify `src/main/resources/application.properties`:
-```properties
-spring.datasource.url=jdbc:postgresql://localhost:5432/demo
-spring.datasource.username=user
-spring.datasource.password=new_secure_password
-spring.datasource.driver-class-name=org.postgresql.Driver
-spring.jpa.database-platform=org.hibernate.dialect.PostgreSQLDialect
-spring.jpa.hibernate.ddl-auto=update
-```
+### ❗Prerequisites
+Before running the project, ensure you have the following installed:
+- **Node.js** (for Next.js frontend)
+- **Java Development Kit (JDK)** (for Spring Boot backend)
+- **MongoDB** (local or cloud)
 
----
-## ▶️ Running the Application
-### Using Maven
-```sh
-mvn spring-boot:run
-```
+### 👨‍💻Installation
 
-### Using Java
-```sh
-java -jar target/your-app.jar
-```
-
----
-## 🔎 API Endpoints
-| Method | Endpoint         | Description |
-|--------|----------------|-------------|
-| GET    | `/api/tasks`    | Get all tasks |
-| POST   | `/api/tasks`    | Add a new task |
-
-
----
-## 🛠 Troubleshooting
-### 🔴 Unable to Connect to PostgreSQL
-If you see `FATAL: password authentication failed for user "user"`, reset the password:
-```sh
-psql -U postgres
-ALTER USER user WITH PASSWORD 'new_secure_password';
-```
-Then restart PostgreSQL:
-```sh
-sudo systemctl restart postgresql
-```
----
-## 👨‍💻 Author
-- **H D Sithum Sandaruwan** - [sithum-sandaruwan](https://github.com/sithum-sandaruwan)
-
-
-
+1. **Clone the repository**:
+   ```bash
+   git clone https://github.com/your-username/your-repo-name.git
+   cd your-repo-name
