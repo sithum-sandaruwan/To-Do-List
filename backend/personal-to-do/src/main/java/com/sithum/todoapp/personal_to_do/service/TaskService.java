@@ -28,4 +28,11 @@ public class TaskService {
         return taskRepository.save(task);
     }
 
+    public Task markTaskDone(String id) {
+        Task task = taskRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Task Not Found"));
+        task.setCompleted(true);
+        return taskRepository.save(task);
+    }
+
 }
