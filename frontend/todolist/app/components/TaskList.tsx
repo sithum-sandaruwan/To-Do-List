@@ -37,17 +37,31 @@ const TaskList = ({ refresh }: { refresh: boolean }) => {
   }, [refresh]);
 
   return (
-    <div className="w-full md:w-1/2 pl-4">
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
       {tasks.map((task) => (
         <div
           key={task.id.toString()}
-          className="bg-white drop-shadow-lg rounded-md p-6 mb-6"
+          className="bg-white drop-shadow-lg rounded-md p-6 flex flex-col h-full"
         >
-          <h2 className="text-xl font-semibold mb-3">{task.task}</h2>
-          <p className="text-gray-800">{task.description}</p>
-          <button className=" bg-green-500 p-2 w-24 mt-5 hover:bg-slate-200 rounded-md text-black drop-shadow-md">
-            Done
-          </button>
+          <h2 className="text-xl font-semibold mb-3 break-words">
+            {task.task}
+          </h2>
+          <p className="text-gray-800 flex-grow break-words">
+            {task.description}
+          </p>
+          <div className="mt-4 pt-2 border-t border-gray-100">
+            <p className="text-gray-600 text-sm ">
+              <strong>Start Date: </strong>
+              {new Date(task.startDate).toLocaleString()}
+            </p>
+            <p className="text-gray-600 text-sm mt-1">
+              <strong>End Date: </strong>
+              {new Date(task.endDate).toLocaleString()}
+            </p>
+            <button className=" bg-green-500 p-2 w-24 mt-3 hover:bg-green-600 rounded-md text-white drop-shadow-md transition-colors">
+              Done
+            </button>
+          </div>
         </div>
       ))}
     </div>
