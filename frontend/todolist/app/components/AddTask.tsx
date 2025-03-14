@@ -60,10 +60,12 @@ const AddTask = ({ onTaskAdded }: AddTaskProps) => {
           value={description}
           onChange={(e) => setDescription(e.target.value)}
         />
+        <label className="block text-sm font-medium text-gray-400 mb-1">
+          What is the end Date...?
+        </label>
         <input
           type="datetime-local"
           className="p-4 w-full rounded bg-slate-600 text-zinc-200 border-x-black shadow-md hover mb-4"
-          placeholder="What will be the end date of the task..?"
           value={endDate}
           onChange={(e) => setEndDate(e.target.value)}
           required
@@ -71,9 +73,9 @@ const AddTask = ({ onTaskAdded }: AddTaskProps) => {
 
         <button
           type="submit"
-          className="p-4 rounded m-10 w-full sm:w-auto bg-red-600  text-white hover:drop-shadow-lg transition-colors"
+          className="p-4 rounded m-0 w-full sm:w-auto bg-red-600  text-white hover:drop-shadow-lg transition-colors"
         >
-          Add new task
+          Add task
         </button>
       </form>
     </div>
