@@ -73,7 +73,7 @@ const AddTask = ({ onTaskAdded }: AddTaskProps) => {
 
         <button
           type="submit"
-          className="p-4 rounded m-0 w-full sm:w-auto bg-red-600  text-white hover:drop-shadow-lg transition-colors"
+          className="p-4 rounded m-0 w-full sm:w-auto bg-blue-700  text-white hover:drop-shadow-lg transition-colors"
         >
           Add task
         </button>

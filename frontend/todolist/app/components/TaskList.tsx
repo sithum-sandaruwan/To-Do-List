@@ -1,5 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
+import { AiFillDelete, AiFillEdit, AiOutlineCheck } from "react-icons/ai";
 
 interface Task {
   id: String;
@@ -58,8 +59,14 @@ const TaskList = ({ refresh }: { refresh: boolean }) => {
               <strong>End Date: </strong>
               {new Date(task.endDate).toLocaleString()}
             </p>
-            <button className=" bg-green-500 p-2 w-24 mt-3 hover:bg-green-600 rounded-md text-white drop-shadow-md transition-colors">
-              Done
+            <button className=" bg-green-500 p-2 w-8 mt-2  hover:bg-green-600 rounded-md text-white drop-shadow-md transition-colors">
+              <AiOutlineCheck />
+            </button>
+            <button className=" bg-blue-600 p-2 w-8 ml-2 hover:bg-blue-800 rounded-md text-white drop-shadow-md transition-colors">
+              <AiFillEdit />
+            </button>
+            <button className=" bg-red-500 p-2 w-8 ml-2 hover:bg-red-900 rounded-md text-white drop-shadow-md transition-colors">
+              <AiFillDelete />
             </button>
           </div>
         </div>
