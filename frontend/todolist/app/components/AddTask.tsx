@@ -2,18 +2,13 @@
 import { useState } from "react";
 import { json, text } from "stream/consumers";
 
-const AddTask = () => {
+const AddTask = ({ onTaskAdded }) => {
   const [task, setTask] = useState("");
   const [description, setDescription] = useState("");
   const [endDate, setEndDate] = useState("");
 
   const submitHandle = async (e: React.FormEvent) => {
     e.preventDefault();
-
-    if (!endDate) {
-      alert("Please give end date");
-      return;
-    }
 
     const newTask = {
       task,
@@ -35,6 +30,7 @@ const AddTask = () => {
         setTask("");
         setDescription("");
         setEndDate("");
+        onTaskAdded();
       }
     } catch (error) {
       console.error("ERROR", error);
