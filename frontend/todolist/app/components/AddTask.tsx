@@ -2,7 +2,11 @@
 import { useState } from "react";
 import { json, text } from "stream/consumers";
 
-const AddTask = ({ onTaskAdded }) => {
+interface AddTaskProps {
+  onTaskAdded: () => void;
+}
+
+const AddTask = ({ onTaskAdded }: AddTaskProps) => {
   const [task, setTask] = useState("");
   const [description, setDescription] = useState("");
   const [endDate, setEndDate] = useState("");
