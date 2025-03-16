@@ -2,14 +2,21 @@
 import React, { useEffect, useState } from "react";
 import { AiFillDelete, AiFillEdit, AiOutlineCheck } from "react-icons/ai";
 import { Task } from "./types";
+import DoneButton from "./TaskDone";
 
 interface TaskListProps {
   refresh: boolean;
   tasks: Task[];
   setTasks: React.Dispatch<React.SetStateAction<Task[]>>;
+  onMarkAsDone: (taskId: String) => void;
 }
 
-const TaskList = ({ refresh, setTasks, tasks }: TaskListProps) => {
+const TaskList = ({
+  refresh,
+  setTasks,
+  tasks,
+  onMarkAsDone,
+}: TaskListProps) => {
   useEffect(() => {
     const fetchTasks = async () => {
       try {
@@ -38,7 +45,9 @@ const TaskList = ({ refresh, setTasks, tasks }: TaskListProps) => {
       {tasks.map((task) => (
         <div
           key={task.id.toString()}
-          className="bg-white drop-shadow-lg rounded-md p-6 flex flex-col h-full"
+          className={`bg-white drop-shadow-lg rounded-md p-6 flex flex-col h-full ${
+            task.completed ? "bg-green-100" : ""
+          }`}
         >
           <h2 className="text-xl font-semibold mb-3 break-words">
             {task.task}
@@ -55,9 +64,7 @@ const TaskList = ({ refresh, setTasks, tasks }: TaskListProps) => {
               <strong>End Date: </strong>
               {new Date(task.endDate).toLocaleString()}
             </p>
-            <button className=" bg-green-500 p-2 w-8 mt-3  hover:bg-green-600 rounded-md text-white drop-shadow-md transition-colors">
-              <AiOutlineCheck />
-            </button>
+            <DoneButton taskId={task.id} onMarkAsDone={onMarkAsDone} />
             <button className=" bg-blue-600 p-2 w-8 ml-2 mt-3 hover:bg-blue-800 rounded-md text-white drop-shadow-md transition-colors">
               <AiFillEdit />
             </button>

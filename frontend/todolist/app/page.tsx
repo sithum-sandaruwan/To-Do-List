@@ -15,7 +15,7 @@ const Home = () => {
   const handleDoneTask = async (taskId: String) => {
     try {
       const res = await fetch(
-        `https://localhost:8080/api/tasks/${taskId}/done`,
+        `http://localhost:8080/api/tasks/${taskId}/done`,
         {
           method: "PUT",
         }
@@ -54,6 +54,7 @@ const Home = () => {
             refresh={refreshTaskList}
             tasks={tasks}
             setTasks={setTasks}
+            onMarkAsDone={handleDoneTask}
           />
         </div>
       </div>
