@@ -13,11 +13,15 @@ const Home = () => {
   };
 
   const handleDoneTask = async (taskId: String) => {
+    console.log("Task Id:", taskId);
     try {
       const res = await fetch(
         `http://localhost:8080/api/tasks/${taskId}/done`,
         {
           method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
         }
       );
       if (res.ok) {

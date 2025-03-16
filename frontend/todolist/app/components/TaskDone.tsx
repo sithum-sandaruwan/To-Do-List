@@ -2,8 +2,8 @@
 import { AiFillDelete, AiOutlineCheck } from "react-icons/ai";
 
 interface DoneButtonProps {
-  taskId: String;
-  onMarkAsDone: (taskId: String) => void;
+  taskId: string;
+  onMarkAsDone: (taskId: string) => void;
 }
 
 const DoneButton = ({ taskId, onMarkAsDone }: DoneButtonProps) => {

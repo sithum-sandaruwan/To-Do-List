@@ -45,8 +45,8 @@ const TaskList = ({
       {tasks.map((task) => (
         <div
           key={task.id.toString()}
-          className={`bg-white drop-shadow-lg rounded-md p-6 flex flex-col h-full ${
-            task.completed ? "bg-green-100" : ""
+          className={` drop-shadow-lg rounded-md p-6 flex flex-col h-full ${
+            task.completed ? "bg-green-100" : "bg-white"
           }`}
         >
           <h2 className="text-xl font-semibold mb-3 break-words">

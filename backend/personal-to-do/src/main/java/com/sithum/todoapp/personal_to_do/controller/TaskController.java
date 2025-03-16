@@ -38,7 +38,7 @@ public class TaskController {
     }
 
     @PutMapping("/{id}/done")
-    public ResponseEntity<Task> markTaskDone(@RequestBody String id) {
+    public ResponseEntity<Task> markTaskDone(@PathVariable String id) {
         Task task = taskService.markTaskDone(id);
         return ResponseEntity.ok(task);
     }
