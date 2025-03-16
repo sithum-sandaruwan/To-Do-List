@@ -12,7 +12,7 @@ const Home = () => {
     setRefreshTaskList((prev) => !prev);
   };
 
-  const handleDoneTask = async (taskId: String) => {
+  const handleDoneTask = async (taskId: string) => {
     console.log("Task Id:", taskId);
     try {
       const res = await fetch(

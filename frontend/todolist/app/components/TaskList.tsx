@@ -8,7 +8,7 @@ interface TaskListProps {
   refresh: boolean;
   tasks: Task[];
   setTasks: React.Dispatch<React.SetStateAction<Task[]>>;
-  onMarkAsDone: (taskId: String) => void;
+  onMarkAsDone: (taskId: string) => void;
 }
 
 const TaskList = ({
