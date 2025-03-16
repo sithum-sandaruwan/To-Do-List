@@ -1,19 +1,15 @@
 "use client";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { AiFillDelete, AiFillEdit, AiOutlineCheck } from "react-icons/ai";
+import { Task } from "./types";
 
-interface Task {
-  id: String;
-  task: String;
-  description: String;
-  startDate: Date;
-  endDate: Date;
-  completed: Boolean;
+interface TaskListProps {
+  refresh: boolean;
+  tasks: Task[];
+  setTasks: React.Dispatch<React.SetStateAction<Task[]>>;
 }
 
-const TaskList = ({ refresh }: { refresh: boolean }) => {
-  const [tasks, setTasks] = useState<Task[]>([]);
-
+const TaskList = ({ refresh, setTasks, tasks }: TaskListProps) => {
   useEffect(() => {
     const fetchTasks = async () => {
       try {
@@ -26,7 +22,7 @@ const TaskList = ({ refresh }: { refresh: boolean }) => {
             ...task,
             id: task.id.toString(),
           }));
-          setTasks(data);
+          setTasks(transeData);
         } else {
           console.log("Failed to fetch");
         }
@@ -35,7 +31,7 @@ const TaskList = ({ refresh }: { refresh: boolean }) => {
       }
     };
     fetchTasks();
-  }, [refresh]);
+  }, [refresh, setTasks]);
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
