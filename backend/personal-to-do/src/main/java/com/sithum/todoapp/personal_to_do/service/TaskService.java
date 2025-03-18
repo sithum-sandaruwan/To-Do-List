@@ -35,4 +35,17 @@ public class TaskService {
         return taskRepository.save(task);
     }
 
+    public Task updateTask(String id, Task updatedTask) {
+        Task task = taskRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Task Not Found"));
+
+        task.setTask(updatedTask.getTask());
+        task.setDescription(updatedTask.getDescription());
+        task.setCompleted(updatedTask.isCompleted());
+        task.setStartDate(updatedTask.getStartDate());
+        task.setEndDate(updatedTask.getEndDate());
+
+        return taskRepository.save(task);
+    }
+
 }
