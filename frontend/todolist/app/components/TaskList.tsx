@@ -17,6 +17,9 @@ const TaskList = ({
   tasks,
   onMarkAsDone,
 }: TaskListProps) => {
+  const [isEditModalOpen, setIsEDitModalOpen] = useState(false);
+  const [selectedTask, setSelectedTask] = useState<Task | null>(null);
+
   useEffect(() => {
     const fetchTasks = async () => {
       try {
@@ -39,6 +42,13 @@ const TaskList = ({
     };
     fetchTasks();
   }, [refresh, setTasks]);
+
+  const handleEditClick = (task: Task) => {
+    setSelectedTask(task);
+    setIsEDitModalOpen(true);
+  };
+
+  const handleUpdateTask = async (updatedTask: Task) => {};
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
