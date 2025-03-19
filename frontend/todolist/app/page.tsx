@@ -53,7 +53,7 @@ const Home = () => {
         <div className="flex flex-col  p-4 items-center rounded-md w-full">
           <AddTask onTaskAdded={handleTaskAdded} />
         </div>
-        <div className="bg-gray-400 rounded-md p-4 shadow-md w-full max-w-7xl mx-auto lg:mt-3 sm:mt-0  ">
+        <div className="bg-gray-300 rounded-md p-4 shadow-md w-full max-w-7xl mx-auto lg:mt-3 sm:mt-0  ">
           <TaskList
             refresh={refreshTaskList}
             tasks={tasks}
