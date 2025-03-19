@@ -8,7 +8,11 @@ interface EditTaskProps {
 }
 
 const EditTask = ({ task, onUpdateTask, onClose }: EditTaskProps) => {
-  const [editedTask, setEditedTask] = useState<Task>(task);
+  const [editedTask, setEditedTask] = useState<Task>({
+    ...task,
+    startDate: new Date(task.startDate),
+    endDate: new Date(task.endDate),
+  });
 
   const handleTextChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>

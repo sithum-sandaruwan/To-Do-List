@@ -3,6 +3,9 @@ import React, { useEffect, useState } from "react";
 import { AiFillDelete, AiFillEdit, AiOutlineCheck } from "react-icons/ai";
 import { Task } from "./types";
 import DoneButton from "./TaskDone";
+import { error } from "console";
+import { json } from "stream/consumers";
+import EditTask from "./EditTask";
 
 interface TaskListProps {
   refresh: boolean;
@@ -48,7 +51,29 @@ const TaskList = ({
     setIsEDitModalOpen(true);
   };
 
-  const handleUpdateTask = async (updatedTask: Task) => {};
+  const handleUpdateTask = async (updatedTask: Task) => {
+    try {
+      const res = await fetch(
+        `http://localhost:8080/api/tasks/${updatedTask.id}/edit`,
+        {
+          method: "PUT",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(updatedTask),
+        }
+      );
+
+      if (!res.ok) throw new Error("Failed to update task");
+
+      const data: Task = await res.json();
+
+      setTasks((prevTasks) =>
+        prevTasks.map((task) => (task.id === data.id ? data : task))
+      );
+      setIsEDitModalOpen(false);
+    } catch (error) {
+      console.log("Error updating Task:", error);
+    }
+  };
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -75,7 +100,10 @@ const TaskList = ({
               {new Date(task.endDate).toLocaleString()}
             </p>
             <DoneButton taskId={task.id} onMarkAsDone={onMarkAsDone} />
-            <button className=" bg-blue-600 p-2 w-8 ml-2 mt-3 hover:bg-blue-800 rounded-md text-white drop-shadow-md transition-colors">
+            <button
+              className=" bg-blue-600 p-2 w-8 ml-2 mt-3 hover:bg-blue-800 rounded-md text-white drop-shadow-md transition-colors "
+              onClick={() => handleEditClick(task)}
+            >
               <AiFillEdit />
             </button>
             <button className=" bg-red-500 p-2 w-8 ml-2 mt-3 hover:bg-red-900 rounded-md text-white drop-shadow-md transition-colors">
@@ -84,6 +112,14 @@ const TaskList = ({
           </div>
         </div>
       ))}
+
+      {isEditModalOpen && selectedTask && (
+        <EditTask
+          task={selectedTask}
+          onUpdateTask={handleUpdateTask}
+          onClose={() => setIsEDitModalOpen(false)}
+        />
+      )}
     </div>
   );
 };
