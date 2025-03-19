@@ -48,4 +48,8 @@ public class TaskService {
         return taskRepository.save(task);
     }
 
+    public void deleteTask(String id) {
+        taskRepository.deleteById(id);
+    }
+
 }

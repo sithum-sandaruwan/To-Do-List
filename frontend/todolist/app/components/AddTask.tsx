@@ -60,7 +60,7 @@ const AddTask = ({ onTaskAdded }: AddTaskProps) => {
           </label>
           <input
             type="text"
-            className="p-3 w-full border border-gray-300 rounded shadow-lg focus:outline-none hover focus:ring-2 focus:ring-blue-500"
+            className="p-3 w-full border border-gray-300 rounded shadow-lg focus:outline-none hover focus:ring-2 focus:ring-blue-500 text-black"
             placeholder="What's Your New Task...?"
             value={task}
             onChange={(e) => setTask(e.target.value)}
@@ -73,7 +73,7 @@ const AddTask = ({ onTaskAdded }: AddTaskProps) => {
             Description
           </label>
           <textarea
-            className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-black"
             placeholder="Write Something About Task"
             value={description}
             onChange={(e) => setDescription(e.target.value)}
@@ -88,7 +88,7 @@ const AddTask = ({ onTaskAdded }: AddTaskProps) => {
 
           <input
             type="datetime-local"
-            className="p-3 w-full border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="p-3 w-full border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-black"
             value={endDate}
             onChange={(e) => setEndDate(e.target.value)}
             required

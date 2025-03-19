@@ -90,7 +90,7 @@ const TaskList = ({
           <p className="text-gray-800 flex-grow break-words">
             {task.description}
           </p>
-          <div className="mt-4 pt-2 border-t border-gray-100">
+          <div className="mt-4 pt-2 border-t border-gray-400">
             <p className="text-gray-600 text-sm ">
               <strong>Start Date: </strong>
               {new Date(task.startDate).toLocaleString()}
