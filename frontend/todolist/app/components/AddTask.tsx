@@ -10,9 +10,13 @@ const AddTask = ({ onTaskAdded }: AddTaskProps) => {
   const [task, setTask] = useState("");
   const [description, setDescription] = useState("");
   const [endDate, setEndDate] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState("");
 
   const submitHandle = async (e: React.FormEvent) => {
     e.preventDefault();
+    setIsLoading(false);
+    setError("");
 
     const newTask = {
       task,
@@ -38,44 +42,72 @@ const AddTask = ({ onTaskAdded }: AddTaskProps) => {
       }
     } catch (error) {
       console.error("ERROR", error);
-      alert("Error occured");
+      setError("An error occured while adding the task.");
+    } finally {
+      setIsLoading(false);
     }
   };
 
   return (
-    <div className="flex flex-col items-center  min-h-screen  p-4">
-      <form onSubmit={submitHandle} className="w-full max-w-lg">
-        <input
-          type="text"
-          className="p-4 w-full  rounded bg-slate-600 text-zinc-200 border-x-black shadow-md hover mb-4"
-          placeholder="What's Your New Task...?"
-          value={task}
-          onChange={(e) => setTask(e.target.value)}
-          required
-        />
-        <input
-          type="text"
-          className="p-20 w-full   rounded bg-slate-600 text-zinc-200 border-x-black shadow-md hover mb-4 "
-          placeholder="Write Something About Task"
-          value={description}
-          onChange={(e) => setDescription(e.target.value)}
-        />
-        <label className="block text-sm font-medium text-gray-400 mb-1">
-          What is the end Date...?
-        </label>
-        <input
-          type="datetime-local"
-          className="p-4 w-full rounded bg-slate-600 text-zinc-200 border-x-black shadow-md hover mb-4"
-          value={endDate}
-          onChange={(e) => setEndDate(e.target.value)}
-          required
-        />
+    <div className="flex flex-col items-center min-h-screen p-4 w-full">
+      <form
+        onSubmit={submitHandle}
+        className="w-full max-w-lg bg-white p-6 rounded-lg shadow-md"
+      >
+        <div className="mb-4">
+          <label className="block text-sm font-medium text-gray-700 mb-1">
+            Task
+          </label>
+          <input
+            type="text"
+            className="p-3 w-full border border-gray-300 rounded shadow-lg focus:outline-none hover focus:ring-2 focus:ring-blue-500"
+            placeholder="What's Your New Task...?"
+            value={task}
+            onChange={(e) => setTask(e.target.value)}
+            required
+          />
+        </div>
+
+        <div className="mb-4">
+          <label className="block text-sm font-medium text-gray-700 mb-1">
+            Description
+          </label>
+          <textarea
+            className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+            placeholder="Write Something About Task"
+            value={description}
+            onChange={(e) => setDescription(e.target.value)}
+            rows={4}
+          />
+        </div>
+
+        <div className="mb-6">
+          <label className="block text-sm font-medium text-gray-700 mb-1">
+            End Date
+          </label>
+
+          <input
+            type="datetime-local"
+            className="p-3 w-full border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+            value={endDate}
+            onChange={(e) => setEndDate(e.target.value)}
+            required
+          />
+        </div>
+
+        {/* {error && (
+          <div
+            className="mb-4 text-red-500 text-sm"
+            {error}
+          ></div>
+        )} */}
 
         <button
           type="submit"
-          className="p-4 rounded m-0 w-full sm:w-auto bg-blue-700  text-white hover:drop-shadow-lg transition-colors"
+          disabled={isLoading}
+          className="py-3  w-full  bg-blue-700  text-white rounded-lg hover:bg-blue-700 transition-colors disabled:bg-blue-300"
         >
-          Add task
+          {isLoading ? "Added Task" : "Add Task"}
         </button>
       </form>
     </div>
