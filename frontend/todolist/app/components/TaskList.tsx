@@ -6,6 +6,7 @@ import DoneButton from "./TaskDone";
 import { error } from "console";
 import { json } from "stream/consumers";
 import EditTask from "./EditTask";
+import DeleteTask from "./DeleteTask";
 
 interface TaskListProps {
   refresh: boolean;
@@ -49,6 +50,10 @@ const TaskList = ({
   const handleEditClick = (task: Task) => {
     setSelectedTask(task);
     setIsEDitModalOpen(true);
+  };
+
+  const handleDeleteClick = (taskId: string) => {
+    setTasks((preTasks) => preTasks.filter((task) => task.id !== taskId));
   };
 
   const handleUpdateTask = async (updatedTask: Task) => {
@@ -106,9 +111,7 @@ const TaskList = ({
             >
               <AiFillEdit />
             </button>
-            <button className=" bg-red-500 p-2 w-8 ml-2 mt-3 hover:bg-red-900 rounded-md text-white drop-shadow-md transition-colors">
-              <AiFillDelete />
-            </button>
+            <DeleteTask taskId={task.id} onDelete={handleDeleteClick} />
           </div>
         </div>
       ))}

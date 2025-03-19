@@ -1,6 +1,7 @@
 import { error } from "console";
 import { useState } from "react";
 import { AiFillDelete } from "react-icons/ai";
+import ConfirmationModal from "./modals/ConfirmationModal";
 
 interface DeleteTaskProps {
   taskId: string;
@@ -9,12 +10,20 @@ interface DeleteTaskProps {
 
 const DeleteTask = ({ taskId, onDelete }: DeleteTaskProps) => {
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleDeleteClick = async () => {
+    setIsLoading(true);
     try {
-      const res = await fetch(`https://localhost:8080/api/tasks/${taskId}`, {
-        method: "DELETE",
-      });
+      const res = await fetch(
+        `http://localhost:8080/api/tasks/${taskId}/delete`,
+        {
+          method: "DELETE",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
 
       if (!res.ok) throw new Error("Failed to Delete Task");
 
@@ -22,16 +31,30 @@ const DeleteTask = ({ taskId, onDelete }: DeleteTaskProps) => {
     } catch (error) {
       console.log("Error deleting task:", error);
     } finally {
+      setIsLoading(false);
       setIsDeleteModalOpen(false);
     }
   };
 
   return (
-    <button
-      className=" bg-red-500 p-2 w-8 ml-2 mt-3 hover:bg-red-900 rounded-md text-white drop-shadow-md transition-colors"
-      onClick={() => setIsDeleteModalOpen(true)}
-    >
-      <AiFillDelete />
-    </button>
+    <>
+      <button
+        className=" bg-red-500 p-2 w-8 ml-2 mt-3 hover:bg-red-900 rounded-md text-white drop-shadow-md transition-colors"
+        onClick={() => setIsDeleteModalOpen(true)}
+      >
+        <AiFillDelete />
+      </button>
+
+      <ConfirmationModal
+        isOpen={isDeleteModalOpen}
+        onClose={() => setIsDeleteModalOpen(false)}
+        onConfirm={handleDeleteClick}
+        title="Delete Task"
+        message="Are you want to delete this task permenently...?"
+        isLoading={isLoading}
+      />
+    </>
   );
 };
+
+export default DeleteTask;
