@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.springframework.data.mongodb.repository.MongoRepository;
 
-import com.sithum.todoapp.personal_to_do.model.Task;
+import com.sithum.todoapp.personal_to_do.entity.Task;
 
 public interface TaskRepo extends MongoRepository<Task, String> {
 

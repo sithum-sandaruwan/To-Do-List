@@ -6,7 +6,7 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import com.sithum.todoapp.personal_to_do.TaskRepo;
-import com.sithum.todoapp.personal_to_do.model.Task;
+import com.sithum.todoapp.personal_to_do.entity.Task;
 
 @Service
 public class TaskService {

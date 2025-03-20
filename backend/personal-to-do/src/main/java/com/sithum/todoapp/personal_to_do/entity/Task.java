@@ -1,4 +1,4 @@
-package com.sithum.todoapp.personal_to_do.model;
+package com.sithum.todoapp.personal_to_do.entity;
 
 import java.util.*;
 import org.springframework.data.annotation.Id;

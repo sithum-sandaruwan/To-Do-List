@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.sithum.todoapp.personal_to_do.model.Task;
+import com.sithum.todoapp.personal_to_do.entity.Task;
 import com.sithum.todoapp.personal_to_do.service.TaskService;
 import org.springframework.web.bind.annotation.PutMapping;
 
