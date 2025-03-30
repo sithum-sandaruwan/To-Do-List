@@ -18,5 +18,5 @@ public class Task {
     private boolean completed;
     private Date startDate;
     private Date endDate;
-
+    private String userId;
 }

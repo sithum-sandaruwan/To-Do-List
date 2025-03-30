@@ -1,6 +1,7 @@
 package com.sithum.todoapp.personal_to_do;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.data.mongodb.repository.MongoRepository;
 
@@ -13,4 +14,8 @@ public interface TaskRepo extends MongoRepository<Task, String> {
     List<Task> findAll();
 
     Task save(Task task);
+
+    List<Task> findByUserId(String userId);
+
+    Optional<Task> findByIdAndUserId(String id, String userId);
 }

@@ -1,10 +1,16 @@
 package com.sithum.todoapp.personal_to_do.service;
 
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.oauth2.client.userinfo.DefaultOAuth2UserService;
 import org.springframework.security.oauth2.client.userinfo.OAuth2UserRequest;
+import org.springframework.security.oauth2.core.OAuth2AuthenticationException;
+import org.springframework.security.oauth2.core.user.DefaultOAuth2User;
 import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.stereotype.Service;
 
@@ -20,16 +26,21 @@ public class OAuth2UserService extends DefaultOAuth2UserService {
         this.userRepo = userRepository;
     }
 
+    public OAuth2UserService() {
+        this.userRepo = null;
+        // TODO Auto-generated constructor stub
+    }
+
     @Override
-    public OAuth2User loadUser(OAuth2UserRequest userRequest) {
-
+    public OAuth2User loadUser(OAuth2UserRequest userRequest) throws OAuth2AuthenticationException {
         try {
-            OAuth2User auth2User = super.loadUser(userRequest);
+            OAuth2User oAuth2User = super.loadUser(userRequest);
 
-            String email = auth2User.getAttribute("email");
-            String name = auth2User.getAttribute("name");
+            Map<String, Object> attributes = oAuth2User.getAttributes();
+            String email = (String) attributes.get("email");
+            String name = (String) attributes.get("name");
             String serviceProvider = userRequest.getClientRegistration().getRegistrationId();
-            String serviceProviderId = auth2User.getAttribute("sub");
+            String serviceProviderId = (String) attributes.get("sub");
 
             Optional<User> userOptional = userRepo.findByEmail(email);
 
@@ -42,11 +53,18 @@ public class OAuth2UserService extends DefaultOAuth2UserService {
                 return userRepo.save(newUser);
             });
 
-            return auth2User;
+            // Create a copy of the attributes and add your user ID
+            Map<String, Object> newAttributes = new HashMap<>(attributes);
+            newAttributes.put("userId", user.getId());
+
+            return new DefaultOAuth2User(
+                    Collections.singleton(new SimpleGrantedAuthority("ROLE_USER")),
+                    newAttributes,
+                    "name" // This is the name attribute key
+            );
 
         } catch (Exception e) {
-            throw new RuntimeException("OAuth2 login failed", e);
+            throw new OAuth2AuthenticationException(null, "OAuth2 login failed", e);
         }
-
     }
 }
