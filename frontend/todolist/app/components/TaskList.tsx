@@ -154,7 +154,7 @@ const TaskList = ({
             <div className="flex items-center mt-3 space-x-2">
               <DoneButton taskId={task.id} onMarkAsDone={onMarkAsDone} />
               <button
-                className="bg-blue-600 p-2 w-8 hover:bg-blue-800 rounded-md text-white drop-shadow-md transition-colors"
+                className="bg-blue-600 mt-3 p-2 w-8 hover:bg-blue-800 rounded-md text-white drop-shadow-md transition-colors"
                 onClick={() => handleEditClick(task)}
               >
                 <AiFillEdit />
