@@ -1,0 +1,51 @@
+[33m1b02896[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m)[m edited properties
+[33med8a4fe[m Remove sensitive credentials
+[33m004de8e[m remove the google Auth configes
+[33mff389b8[m configuring the Google OAuth login.
+[33m767a6d5[m fix the errors when run the application backend
+[33m47333c1[m[33m ([m[1;31morigin/main[m[33m)[m Ongoing creating the google Auth configurations.
+[33me6a6047[m created the OAuthUserService.java file , UserRepository.java & User.java files.
+[33m6bbcddc[m google auth credentials add in the .env file
+[33m6f3bc18[m pom.xml file: fix the error in line 4 and 1.remove the not necessary dependencies. Change the folder name : folder name Modal change to Entity.
+[33mbbb554d[m Initialize the LoginPage.tsx file. pom.xml : Added the dependencies for the initialize the google Oauth to the application.
+[33maf8ce87[m ConfirmationModal.tsx file : edit the margin of the buttons and card padding.
+[33m65160d9[m Initialize the ConfirmationModal class. TaskController.java file : fix the runtime error when deleting the task.Change the annotation of the delete task parameter. DeleteTask.tsx file: edit the URL https to http. TaskLIst.tsx file : created handleDeleteClick function.
+[33m98d6f31[m DeleteTask.tsx file: created the backend fetching and modals.delete modal is connect to the button component.
+[33m6f79ff1[m TaskController.java file: create the deleteTask method. TaskService.java file: created the deleteTask method. AddTask.tsx file : edit the color of the text in text field. DeleteTask.tsx file: create the deleteTaskProp interface.
+[33mb7d7afc[m AddTask.tsx file : change the appearance of the form. EditTask.tsx file: Change the topic of the modal
+[33mb7f1009[m EditTask.tsx file : Fix the runtime error in startDate data type in line 65. TaskList.tsx file : created the handlUpdateTask function and render the EditTask Modal in the taskList.
+[33ma63cfa3[m TaskList.tsx file : created handleEDitClick & handleUpdateTask function for manage the user interaction.
+[33mbe0bfd5[m TaskController.java file :  created the updateTask function for update button. TaskService.java file : create the updateTask function for get the data from database. EditTask.tsx file : create the modal to update the task details.
+[33m45e109a[m cahnge the String wrapper object type to typescript  primitive type
+[33m0e1076a[m TaskController.java file: change the  RequestBody annotation to PathVariable in markTaskDone. TaskDone.tsx file : edited the DoneButtonProps 'String' word capital "S" to simple. TaskList.tsx file: fix the issue change the color when click the task done button.
+[33m82b2d58[m page.tsx file : edit the url of handleTaskAdded function line 18. TaskDone.tsx file: created the DoneButton function. TaskLIst.tsx file:edited
+[33m719d67d[m created the new file Task interface. TaskList.tsx file : fix the importing types.ts file error.And TaskListProps interface error. page.tsx file: add the handleDoneTask Function for mark the done tasks.
+[33mff7acf6[m TaskController.java file edited :  Create the method for mark the done tasks. TaskService.java file : write the logic for mark the done tasks. TaskList.tsx file : change the marigns of the buttons.
+[33m61c35c6[m AddTask.tsx file : edit the color of the add task button TaskList.tsx file : added the done,update,delete buttons.
+[33m84cd26e[m Page.tsx file: headline style edited. AddTask.tsx file: added the label to  end date input text field.
+[33m7ef43b2[m Merge branch 'main' of https://github.com/sithum-sandaruwan/To-Do-List
+[33m63edf15[m fix the TaskList.tsx file. Issue: card size not adjust with the card content.
+[33m2f52b96[m Update README.md
+[33m1d78302[m Update README.md
+[33me285c2e[m fix the line 5: [Binding element 'OnTaskAdded' implicity has an 'any type'] bug in the AddTask.tsx file. Data refreshing handling is developed.
+[33m38de9b2[m created the task cards in TaskList.tsx and created data transition from backend. AddTask.tsx & page.tsx in developing for task added refresh handling.
+[33ma827076[m created the data fetching from the backend.
+[33md63f24c[m align the text fields and add task button.
+[33m42b9c32[m fixed the issue in AddTask.tsx. Bug: endDate value was not added in the json object.
+[33m05df9eb[m Edited the End Date fucntion of the application.Backend data transforming is mostly good.
+[33m56692f6[m edited the properties for configure Mongo DB database.Task.java model edited.
+[33m7660fac[m Fix the bugs in the TaskRepo.java and Task.java files. Added the Mongo DB database properties add to the application.properties
+[33md58ccc7[m Edited TaskRepo.java,TaskController.java,Task.java,TaskService.java files.
+[33m620f86b[m Merge branch 'main' of https://github.com/sithum-sandaruwan/To-Do-List
+[33mcde4993[m make changes on Task.java,TaskService.java,TaskRepo.java
+[33m0e6e8f3[m Update README.md
+[33m7d76db1[m Edited the fetch URL of backend in AddTask.tsx , Create the config.java file in the backend
+[33m957db50[m Create the Task.java Model class,Edit the TaskService.java class,Edited the AddTask.tsx file fetch URL.
+[33m8957227[m Task Controller & Task Service files created : get the JSON of task details from frontend create task function onvert it to the object.
+[33m618e57a[m Edited the add task file : get the task details from the text fields and initialize them to the variables.
+[33mb6ac877[m create the input convert to json  and sending backend options
+[33m3b1cdb0[m Responsived the page components.
+[33m43470ee[m Create the cards for task list.And setup the body color to white.
+[33m095fa04[m Created the add task filed and button.
+[33mdd9985c[m Developing the AddTask.tsx , Setup the tailwind css and daisyUi
+[33m3be1873[m Initial commit
