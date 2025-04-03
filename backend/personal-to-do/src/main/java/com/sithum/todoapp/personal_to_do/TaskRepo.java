@@ -15,7 +15,4 @@ public interface TaskRepo extends MongoRepository<Task, String> {
 
     Task save(Task task);
 
-    List<Task> findByUserId(String userId);
-
-    Optional<Task> findByIdAndUserId(String id, String userId);
 }

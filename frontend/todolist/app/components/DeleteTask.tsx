@@ -5,10 +5,11 @@ import ConfirmationModal from "./modals/ConfirmationModal";
 
 interface DeleteTaskProps {
   taskId: string;
-  onDelete: (taskId: string) => void;
+  onDelete: (taskId: string) => Promise<void> | void;
+  authToken: string | null;
 }
 
-const DeleteTask = ({ taskId, onDelete }: DeleteTaskProps) => {
+const DeleteTask = ({ taskId, onDelete, authToken }: DeleteTaskProps) => {
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -21,6 +22,7 @@ const DeleteTask = ({ taskId, onDelete }: DeleteTaskProps) => {
           method: "DELETE",
           headers: {
             "Content-Type": "application/json",
+            Authorization: `Bearer ${authToken}`,
           },
         }
       );

@@ -1,6 +1,5 @@
 package com.sithum.todoapp.personal_to_do.service;
 
-import java.util.Date;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
@@ -16,21 +15,16 @@ public class TaskService {
         this.taskRepository = taskRepository;
     }
 
-    public List<Task> getAllTasks(String userId) {
+    public List<Task> getAllTasks() {
         return taskRepository.findAll();
-
     }
 
     public Task createTask(Task task) {
-        System.out.println("recieved task:" + task);
-        task.setStartDate(new Date());
-        System.out.println("end Date:" + task.getEndDate());
-
         return taskRepository.save(task);
     }
 
-    public Task markTaskDone(String id, String userId) {
-        Task task = taskRepository.findByIdAndUserID(id, userId)
+    public Task markTaskDone(String id) {
+        Task task = taskRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Task Not Found"));
         task.setCompleted(true);
         return taskRepository.save(task);
@@ -38,7 +32,7 @@ public class TaskService {
 
     public Task updateTask(String id, Task updatedTask) {
         Task task = taskRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Task Not Found"));
+                .orElseThrow(() -> new RuntimeException("Task not found"));
 
         task.setTask(updatedTask.getTask());
         task.setDescription(updatedTask.getDescription());
@@ -52,19 +46,4 @@ public class TaskService {
     public void deleteTask(String id) {
         taskRepository.deleteById(id);
     }
-
-    public Object getAllTasksForUser(String userId) {
-        return taskRepository.findByUserId(userId);
-    }
-
-    public void deleteTask(String id, String userId) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'deleteTask'");
-    }
-
-    public Task updateTask(String id, Task updatedTask, String userId) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'updateTask'");
-    }
-
 }
